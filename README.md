@@ -1,227 +1,155 @@
-# SENS (Sensory Emotion Neural System)
+# 覺 (イシキ / Ishiki) - 情緒感知模組
 
-## 功能簡介
+## 模組簡介
 
-SENS 是 MorphusAI 專門的情緒理解模組，專為處理中文對話而設計，旨在讓我們的人格模型能夠更深層次地理解對話中的情緒，並做出更人性化的反應。SENS 模組基於50萬筆已標記的中文對話數據進行訓練，能夠分類和分析以下五種主要情緒：
+覺(イシキ)是 TENSEI 系統的情緒理解核心，採用 SENS (Sensory Emotion Neural System) 技術，專門設計用於深度理解使用者的情緒狀態。基於大規模中文對話數據訓練，能夠精確捕捉對話中的情緒波動，實現真實的情感互動。
 
-1. **喜**（よろこび）
-2. **怒**（いかり）
-3. **哀**（かなしみ）
-4. **楽**（たのしみ）
-5. **怖**（おそれ）
+## 情緒光譜
 
-### 核心功能
+覺模組能夠識別和分析五種核心情緒：
 
-- **情緒分類**: SENS 能夠準確地分類中文對話中的情緒，提升模型對情緒的識別能力。
-- **實時情緒分析**: 能夠對實時中文對話數據進行情緒分析，並根據分析結果提供適當的反應建議。
+| 情緒 | 日文讀音 | 描述 |
+|------|----------|------|
+| 喜 | よろこび (Yorokobi) | 歡喜、愉悅的正面情緒 |
+| 怒 | いかり (Ikari) | 憤怒、不滿的強烈情緒 |
+| 哀 | かなしみ (Kanashimi) | 悲傷、失落的消極情緒 |
+| 楽 | たのしみ (Tanoshimi) | 期待、享受的愉快情緒 |
+| 怖 | おそれ (Osore) | 恐懼、擔憂的不安情緒 |
 
-### 應用場景
+## 核心功能
 
-- **用戶支持系統**: 提升中文客服系統的情緒感知能力，讓客服回應更具同理心。
-- **智能助手**: 使AI助手能夠更好地理解和回應用戶的情緒需求。
-- **對話分析**: 對歷史中文對話數據進行情緒分析，幫助識別情緒趨勢和問題點。
+### 1. 情緒識別系統
+- **多模態情緒分析**
+  - 文本情緒識別
+  - 語音情緒分析
+  - 表情情緒識別
+  - 情緒強度評估
 
-## Features Overview
+### 2. 實時處理能力
+- **即時情緒追蹤**
+  - 情緒狀態實時監測
+  - 情緒變化趨勢分析
+  - 情緒轉換點識別
+  - 對話氛圍評估
 
-SENS is a proprietary emotion understanding module of MorphusAI, specifically designed for processing Chinese conversations. It enables our persona models to deeply understand emotions in conversations and respond more humanely. The SENS module is trained on 500,000 labeled Chinese conversation data points and can classify and analyze the following five primary emotions:
+### 3. 情緒資料整合
+- **全方位情緒理解**
+  - 統整多源情緒數據
+  - 生成情緒綜合報告
+  - 提供情緒應對建議
+  - 情緒歷史記錄
 
-1. **Joy** (喜 - よろこび)
-2. **Anger** (怒 - いかり)
-3. **Sadness** (哀 - かなしみ)
-4. **Happiness** (楽 - たのしみ)
-5. **Fear** (怖 - おそれ)
+## 技術特點
 
-### Core Features
+### 訓練數據
+- 基於 50 萬筆標註中文對話
+- 涵蓋多種場景和語境
+- 豐富的情緒標記
+- 持續更新和優化
 
-- **Emotion Classification**: SENS can accurately classify emotions in Chinese conversations, enhancing the model's ability to recognize emotions.
-- **Real-Time Emotion Analysis**: Capable of analyzing emotions in real-time Chinese conversation data and providing appropriate response suggestions based on the analysis.
+### 處理流程
+```mermaid
+graph TD
+    A[輸入數據] --> B[多模態分析]
+    B --> C[情緒識別]
+    C --> D[強度評估]
+    D --> E[情緒綜合]
+    E --> F[輸出結果]
+```
 
-### Application Scenarios
+## API 規格
 
-- **Customer Support Systems**: Enhancing the emotional awareness of Chinese customer service systems, making responses more empathetic.
-- **Intelligent Assistants**: Enabling intelligent assistants to better understand and respond to users' emotional needs in Chinese.
-- **Conversation Analysis**: Analyzing historical Chinese conversation data to identify emotional trends and issues.
+### 情緒分析請求
+```json
+{
+    "text": "使用者輸入文本",
+    "voice_data": "語音數據",
+    "facial_expression": "表情數據"
+}
+```
 
-## 引用
+### 情緒分析回應
+```json
+{
+    "status": "success",
+    "timestamp": "2024-01-07T10:30:00.000Z",
+    "emotions": {
+        "primary": {
+            "type": "喜",
+            "intensity": 0.85
+        },
+        "secondary": {
+            "type": "楽",
+            "intensity": 0.35
+        },
+        "spectrum": {
+            "喜": 0.85,
+            "怒": 0.05,
+            "哀": 0.02,
+            "楽": 0.35,
+            "怖": 0.01
+        }
+    },
+    "context": {
+        "mood_trend": "positive",
+        "confidence": 0.92
+    }
+}
+```
 
-SENS 使用了預訓練的 `bert-base-chinese` 模型，詳細信息請參考 [Hugging Face的 `bert-base-chinese` 模型](https://huggingface.co/bert-base-chinese)。
+## 與其他模組互動
 
-## 許可證
+### 輸入來源
+- 響(ヒビキ)：語音情緒特徵
+- 鏡(カガミ)：表情情緒特徵
+- 文本輸入：對話內容
 
-本專案使用 Apache License 2.0 許可證。詳細條款請參見下文。
+### 輸出目標
+- 魂(タマシイ)：情緒狀態資訊
+- 演(エン)：情緒表現指導
 
-```plaintext
-                             Apache License
-                       Version 2.0, January 2004
-                    http://www.apache.org/licenses/
+## 應用場景
 
-TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+1. **一般對話**
+   - 即時情緒識別
+   - 自然對話引導
+   - 情緒共鳴回應
 
-1. Definitions.
+2. **特殊情境**
+   - 情緒危機識別
+   - 敏感話題處理
+   - 情緒安撫回應
 
-   "License" shall mean the terms and conditions for use, reproduction,
-   and distribution as defined by Sections 1 through 9 of this document.
+3. **長期互動**
+   - 情緒變化追蹤
+   - 使用者偏好學習
+   - 情緒模式分析
 
-   "Licensor" shall mean the copyright owner or entity authorized by
-   the copyright owner that is granting the License.
+## 未來展望
 
-   "Legal Entity" shall mean the union of the acting entity and all
-   other entities that control, are controlled by, or are under common
-   control with that entity. For the purposes of this definition,
-   "control" means (i) the power, direct or indirect, to cause the
-   direction or management of such entity, whether by contract or
-   otherwise, or (ii) ownership of fifty percent (50%) or more of the
-   outstanding shares, or (iii) beneficial ownership of such entity.
+- [ ] 擴充情緒識別維度
+- [ ] 提升多語言支援
+- [ ] 加強情緒預測能力
+- [ ] 優化實時處理效能
+- [ ] 深化情緒理解準確度
 
-   "You" (or "Your") shall mean an individual or Legal Entity
-   exercising permissions granted by this License.
+## 注意事項
 
-   "Source" form shall mean the preferred form for making modifications,
-   including but not limited to software source code, documentation
-   source, and configuration files.
+1. **資料安全**
+   - 情緒數據加密保護
+   - 隱私資訊安全處理
+   - 敏感資訊過濾機制
 
-   "Object" form shall mean any form resulting from mechanical
-   transformation or translation of a Source form, including but
-   not limited to compiled object code, generated documentation,
-   and conversions to other media types.
+2. **系統限制**
+   - 需要足夠的上下文資訊
+   - 特定方言可能影響準確度
+   - 極端情緒需特別處理
 
-   "Work" shall mean the work of authorship, whether in Source or
-   Object form, made available under the License, as indicated by a
-   copyright notice that is included in or attached to the work
-   (an example is provided in the Appendix below).
+3. **建議事項**
+   - 定期更新情緒模型
+   - 維護情緒辭典
+   - 監控識別準確度
 
-   "Derivative Works" shall mean any work, whether in Source or Object
-   form, that is based on (or derived from) the Work and for which the
-   editorial revisions, annotations, elaborations, or other modifications
-   represent, as a whole, an original work of authorship. For the purposes
-   of this License, Derivative Works shall not include works that remain
-   separable from, or merely link (or bind by name) to the interfaces of,
-   the Work and Derivative Works thereof.
+---
 
-   "Contribution" shall mean any work of authorship, including
-   the original version of the Work and any modifications or additions
-   to that Work or Derivative Works thereof, that is intentionally
-   submitted to Licensor for inclusion in the Work by the copyright owner
-   or by an individual or Legal Entity authorized to submit on behalf of
-   the copyright owner. For the purposes of this definition, "submitted"
-   means any form of electronic, verbal, or written communication sent
-   to the Licensor or its representatives, including but not limited to
-   communication on electronic mailing lists, source code control systems,
-   and issue tracking systems that are managed by, or on behalf of, the
-   Licensor for the purpose of discussing and improving the Work, but
-   excluding communication that is conspicuously marked or otherwise
-   designated in writing by the copyright owner as "Not a Contribution."
-
-   "Contributor" shall mean Licensor and any individual or Legal Entity
-   on behalf of whom a Contribution has been received by Licensor and
-   subsequently incorporated within the Work.
-
-2. Grant of Copyright License. Subject to the terms and conditions of
-   this License, each Contributor hereby grants to You a perpetual,
-   worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-   copyright license to reproduce, prepare Derivative Works of,
-   publicly display, publicly perform, sublicense, and distribute the
-   Work and such Derivative Works in Source or Object form.
-
-3. Grant of Patent License. Subject to the terms and conditions of
-   this License, each Contributor hereby grants to You a perpetual,
-   worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-   (except as stated in this section) patent license to make, have made,
-   use, offer to sell, sell, import, and otherwise transfer the Work,
-   where such license applies only to those patent claims licensable
-   by such Contributor that are necessarily infringed by their
-   Contribution(s) alone or by combination of their Contribution(s)
-   with the Work to which such Contribution(s) was submitted. If You
-   institute patent litigation against any entity (including a
-   cross-claim or counterclaim in a lawsuit) alleging that the Work
-   or a Contribution incorporated within the Work constitutes direct
-   or contributory patent infringement, then any patent licenses
-   granted to You under this License for that Work shall terminate
-   as of the date such litigation is filed.
-
-4. Redistribution. You may reproduce and distribute copies of the
-   Work or Derivative Works thereof in any medium, with or without
-   modifications, and in Source or Object form, provided that You
-   meet the following conditions:
-
-   (a) You must give any other recipients of the Work or
-       Derivative Works a copy of this License; and
-
-   (b) You must cause any modified files to carry prominent notices
-       stating that You changed the files; and
-
-   (c) You must retain, in the Source form of any Derivative Works
-       that You distribute, all copyright, patent, trademark, and
-       attribution notices from the Source form of the Work,
-       excluding those notices that do not pertain to any part of
-       the Derivative Works; and
-
-   (d) If the Work includes a "NOTICE" text file as part of its
-       distribution, then any Derivative Works that You distribute must
-       include a readable copy of the attribution notices contained
-       within such NOTICE file, excluding those notices that do not
-       pertain to any part of the Derivative Works, in at least one
-       of the following places: within a NOTICE text file distributed
-       as part of the Derivative Works; within the Source form or
-       documentation, if provided along with the Derivative Works; or,
-       within a display generated by the Derivative Works, if and
-       wherever such third-party notices normally appear. The contents
-       of the NOTICE file are for informational purposes only and
-       do not modify the License. You may add Your own attribution
-       notices within Derivative Works that You distribute, alongside
-       or as an addendum to the NOTICE text from the Work, provided
-       that such additional attribution notices cannot be construed
-       as modifying the License.
-
-   You may add Your own copyright statement to Your modifications and
-   may provide additional or different license terms and conditions
-   for use, reproduction, or distribution of Your modifications, or
-   for any such Derivative Works as a whole, provided Your use,
-   reproduction, and distribution of the Work otherwise complies with
-   the conditions stated in this License.
-
-5. Submission of Contributions. Unless You explicitly state otherwise,
-   any Contribution intentionally submitted for inclusion in the Work
-   by You to the Licensor shall be under the terms and conditions of
-   this License, without any additional terms or conditions.
-   Notwithstanding the above, nothing herein shall supersede or modify
-   the terms of any separate license agreement you may have executed
-   with Licensor regarding such Contributions.
-
-6. Trademarks. This License does not grant permission to use the trade
-   names, trademarks, service marks, or product names of the Licensor,
-   except as required for describing the origin of the Work and
-   reproducing the content of the NOTICE file.
-
-7. Disclaimer of Warranty. Unless required by applicable law or
-   agreed to in writing, Licensor provides the Work (and each
-   Contributor provides its Contributions) on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-   implied, including, without limitation, any warranties or conditions
-   of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-   PARTICULAR PURPOSE. You are solely responsible for determining the
-   appropriateness of using or redistributing the Work and assume any
-   risks associated with Your exercise of permissions under this License.
-
-8. Limitation of Liability. In no event and under no legal theory,
-   whether in tort (including negligence), contract, or otherwise,
-   unless required by applicable law (such as deliberate and grossly
-   negligent acts) or agreed to in writing, shall any Contributor be
-   liable to You for damages, including any direct, indirect, special,
-   incidental, or consequential damages of any character arising as a
-   result of this License or out of the use or inability to use the
-   Work (including but not limited to damages for loss of goodwill,
-   work stoppage, computer failure or malfunction, or any and all
-   other commercial damages or losses), even if such Contributor
-   has been advised of the possibility of such damages.
-
-9. Accepting Warranty or Additional Liability. While redistributing
-   the Work or Derivative Works thereof, You may choose to offer,
-   and charge a fee for, acceptance of support, warranty, indemnity,
-   or other liability obligations and/or rights consistent with this
-   License. However, in accepting such obligations, You may act only
-   on Your own behalf and on Your sole responsibility, not on behalf
-   of any other Contributor, and only if You agree to indemnify,
-   defend, and hold each Contributor harmless for any liability
-   incurred by, or claims asserted against, such Contributor by reason
-   of your accepting any such warranty or additional liability.
+> 「感知情緒，共鳴心靈」
